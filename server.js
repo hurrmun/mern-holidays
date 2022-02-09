@@ -12,7 +12,14 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 //* CONNECT MONGODB
 
-mongoose.connect(MONGODB_URI);
+mongoose.connection.on("error", (err) =>
+  console.log(err.message + " is Mongod not running?")
+);
+mongoose.connection.on("disconnected", () => console.log("mongo disconnected"));
+
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+});
 mongoose.connection.once("open", () => {
   console.log("connected to mongoose at " + MONGODB_URI);
 });

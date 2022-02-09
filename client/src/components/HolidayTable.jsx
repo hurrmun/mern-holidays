@@ -7,7 +7,7 @@ const HolidayTable = () => {
 
   useEffect(() => {
     const fetchHolidays = async () => {
-      const foundHolidays = await axios.get("/api/holidays");
+      const foundHolidays = await axios.get("/api/holidays/");
       //   console.log("fetched holidays", foundHolidays);
       setHolidays(foundHolidays.data.data);
     };
