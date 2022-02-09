@@ -10,7 +10,12 @@ const EditHolidayForm = () => {
 
   useEffect(() => {
     const fetchCurrentHoliday = async () => {
-      const fetchedHoliday = await axios.get(`/api/holidays/${id}/`);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const fetchedHoliday = await axios.get(`/api/holidays/${id}/`, config);
       setCurrentHoliday(fetchedHoliday.data.data);
     };
     fetchCurrentHoliday();
@@ -24,7 +29,12 @@ const EditHolidayForm = () => {
       likes: parseInt(e.target.likes.value),
       description: e.target.description.value,
     };
-    await axios.put(`/api/holidays/${id}/`, editedHoliday);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    await axios.put(`/api/holidays/${id}/`, editedHoliday, config);
     navigate("/", { replace: true });
     // console.log(newHoliday);
   };

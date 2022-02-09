@@ -12,7 +12,12 @@ const NewHolidayForm = () => {
       likes: parseInt(e.target.likes.value),
       description: e.target.description.value,
     };
-    await axios.post("/api/holidays/", newHoliday);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    await axios.post("/api/holidays/", newHoliday, config);
     navigate("/", { replace: true });
     // console.log(newHoliday);
   };
