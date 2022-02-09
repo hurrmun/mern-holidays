@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const NewHolidayForm = () => {
   const navigate = useNavigate();
@@ -20,6 +20,7 @@ const NewHolidayForm = () => {
   return (
     <div>
       <h2>New Holiday</h2>
+      <Link to="/">Back to all holidays</Link>
       <form onSubmit={handleSubmit}>
         <div className="form-container">
           <div>

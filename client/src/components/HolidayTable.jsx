@@ -1,16 +1,15 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const HolidayTable = () => {
-  const navigate = useNavigate();
   const [holidays, setHolidays] = useState([]);
 
   useEffect(() => {
     const URL = "/api/holidays";
     const fetchHolidays = async () => {
       const foundHolidays = await axios.get(URL);
-      console.log("fetched holidays", foundHolidays);
+      //   console.log("fetched holidays", foundHolidays);
       setHolidays(foundHolidays.data.data);
     };
     fetchHolidays();
