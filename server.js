@@ -18,7 +18,7 @@ mongoose.connection.once("open", () => {
 });
 
 //* MIDDLEWARE
-app.use(express.static(path.join(__dirname, "./client/build")));
+if (process) app.use(express.static(path.join(__dirname, "./client/build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -28,6 +28,10 @@ app.use("/api/holidays", holidayController);
 // app.get("/api/holidays", (req, res) => {
 //   res.send("it's working!");
 // });
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+});
 
 app.listen(port, () => {
   console.log("listening on port: " + port);
