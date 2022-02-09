@@ -2,11 +2,12 @@
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
+const holidayController = require("./controllers/holidayController");
 
 //* CONFIG
 require("dotenv").config();
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3001;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 //* CONNECT MONGODB
@@ -21,9 +22,12 @@ app.use(express.static(path.join(__dirname, "./client/build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/api/holidays", (req, res) => {
-  res.send("it's working!");
-});
+//* ROUTES MIDDLEWARE
+app.use("/api/holidays", holidayController);
+
+// app.get("/api/holidays", (req, res) => {
+//   res.send("it's working!");
+// });
 
 app.listen(port, () => {
   console.log("listening on port: " + port);
