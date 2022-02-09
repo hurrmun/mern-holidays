@@ -7,7 +7,7 @@ const HolidayDetails = () => {
   const [currentHoliday, setCurrentHoliday] = useState({});
   useEffect(() => {
     const fetchCurrentHoliday = async () => {
-      const fetchedHoliday = await axios.get(`/api/holidays/${id}`);
+      const fetchedHoliday = await axios.get(`/api/holidays/${id}/`);
       setCurrentHoliday(fetchedHoliday.data.data);
     };
     fetchCurrentHoliday();

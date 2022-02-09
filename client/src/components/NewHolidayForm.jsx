@@ -12,7 +12,7 @@ const NewHolidayForm = () => {
       likes: parseInt(e.target.likes.value),
       description: e.target.description.value,
     };
-    await axios.post("/api/holidays", newHoliday);
+    await axios.post("/api/holidays/", newHoliday);
     navigate("/", { replace: true });
     // console.log(newHoliday);
   };
