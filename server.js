@@ -9,11 +9,17 @@ const app = express();
 const port = process.env.PORT;
 const MONGODB_URI = process.env.MONGODB_URI;
 
-//* MIDDLEWARE
+//* CONNECT MONGODB
+
 mongoose.connect(MONGODB_URI);
 mongoose.connection.once("open", () => {
   console.log("connected to mongoose at " + MONGODB_URI);
 });
+
+//* MIDDLEWARE
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/api/holidays", (req, res) => {
   res.send("it's working!");
